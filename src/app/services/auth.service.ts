@@ -8,6 +8,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+  isLoggedIn = false;
   token: any;
   constructor(
     private http: HttpClient,
@@ -16,7 +17,7 @@ export class AuthService {
   ) { }
 
   login(email: string, password: string) {
-    return this.http.post('http://recipes.test/api/auth/login', 
+    return this.http.post('http://recipes.test/api/auth/login',
       {email, password}
     ).pipe(
       tap(
@@ -28,8 +29,11 @@ export class AuthService {
             },
             error => console.error('Error login', error)
           );
+          this.token = token;
+          this.isLoggedIn = true;
+          return token;
         }
-      )
-    )
+      ),
+    );
   }
-}
+}// eof
