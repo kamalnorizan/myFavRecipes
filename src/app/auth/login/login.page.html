@@ -1,9 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <form #form="ngForm" (ngSubmit)="login(form)" method="post">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" name="email" ngModel></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" name="password" ngModel></ion-input>
+    </ion-item>
+    <ion-button type="submit" expand="full" color="primary">
+      Login
+    </ion-button>
+  </form>
 </ion-content>
