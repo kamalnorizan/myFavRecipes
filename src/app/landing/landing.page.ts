@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { LoginPage } from '../auth/login/login.page';
 
 @Component({
   selector: 'app-landing',
@@ -7,16 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalController: ModalController
+  ) { }
 
   ngOnInit() {
   }
-  
-  login(){
 
+  async login() {
+    const loginModal = await this.modalController.create({
+      component: LoginPage
+    });
+    return await loginModal.present();
   }
 
-  register(){
+  register() {
 
   }
 
