@@ -30,7 +30,7 @@ export class RegisterPage implements OnInit {
     this.authService.register(form.value.fname, form.value.lname, form.value.email, form.value.password).subscribe(
       data => {
         this.authService.login(form.value.email, form.value.password).subscribe(
-          data => {
+          thedata => {
           },
           error => {
             console.log(error);
