@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <form #form="ngForm" (ngSubmit)="login(form)" method="post">
     <ion-item>
       <ion-label position="floating">Email</ion-label>
@@ -21,4 +21,7 @@
       Login
     </ion-button>
   </form>
+  <p class="ion-text-center">Don't have an account?</p>
+  <ion-button expand="full" color="danger" (click)="registerModal()">Register</ion-button>
+
 </ion-content>
