@@ -17,23 +17,29 @@ export class AuthService {
   ) { }
 
   login(email: string, password: string) {
-    return this.http.post('http://recipes.test/api/auth/login',
-      {email, password}
+    return this.http.post(this.env.API_URL + 'auth/login',
+      { email, password }
     ).pipe(
       tap(
         token => {
           this.storage.setItem('token', token)
-          .then(
-            () => {
-              console.log('BERJAYA!!');
-            },
-            error => console.error('Error login', error)
-          );
+            .then(
+              () => {
+                console.log('BERJAYA!!');
+              },
+              error => console.error('Error login', error)
+            );
           this.token = token;
           this.isLoggedIn = true;
           return token;
         }
       ),
+    );
+  }
+
+  register(fname: string, lname: string, email: string, password: string) {
+    return this.http.post(this.env.API_URL + 'auth/register',
+      { fname, lname, email, password }
     );
   }
 }// eof

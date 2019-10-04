@@ -72,8 +72,4 @@ export class LandingPage implements OnInit {
     return await registerModal.present();
   }
 
-  registerPage() {
-    this.router.navigate(['/recipes']);
-  }
-
 }

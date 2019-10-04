@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginPage } from '../login/login.page';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,9 @@ import { ModalController } from '@ionic/angular';
 export class RegisterPage implements OnInit {
 
   constructor(
-    private modalController: ModalController
+    private modalController: ModalController,
+    private authService: AuthService,
+    private navCtrl: NavController
   ) {
   }
 
@@ -24,7 +27,17 @@ export class RegisterPage implements OnInit {
   }
 
   register(form) {
-
+    this.authService.register(form.value.fname, form.value.lname, form.value.email, form.value.password).subscribe(
+      data => {
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        this.dismissRegister();
+        this.navCtrl.navigateRoot('/recipes');
+      }
+    );
   }
 
   async loginModal() {
