@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { RegisterPage } from '../register/register.page';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,9 @@ import { RegisterPage } from '../register/register.page';
 export class LoginPage implements OnInit {
 
   constructor(
-    private modalController: ModalController
+    private modalController: ModalController,
+    private authService: AuthService,
+    private navCtrl: NavController
   ) { }
 
   ngOnInit() {
@@ -22,7 +25,17 @@ export class LoginPage implements OnInit {
   }
 
   login(form: NgForm) {
-
+    this.authService.login(form.value.email, form.value.password).subscribe(
+      data => {
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        this.dismissLogin();
+        this.navCtrl.navigateRoot('/recipes');
+      }
+    );
   }
 
   async registerModal() {
