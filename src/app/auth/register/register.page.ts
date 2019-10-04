@@ -29,13 +29,22 @@ export class RegisterPage implements OnInit {
   register(form) {
     this.authService.register(form.value.fname, form.value.lname, form.value.email, form.value.password).subscribe(
       data => {
+        this.authService.login(form.value.email, form.value.password).subscribe(
+          data => {
+          },
+          error => {
+            console.log(error);
+          },
+          () => {
+            this.dismissRegister();
+            this.navCtrl.navigateRoot('/recipes');
+          }
+        );
       },
       error => {
         console.log(error);
       },
       () => {
-        this.dismissRegister();
-        this.navCtrl.navigateRoot('/recipes');
       }
     );
   }
