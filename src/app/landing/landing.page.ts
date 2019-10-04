@@ -54,10 +54,6 @@ export class LandingPage implements OnInit {
     console.log('Landing : ionViewWillUnload');
   }
 
-  ngOnDestroy() {
-    console.log('Landing : ngOnDestroy');
-  }
-
   async login() {
     const loginModal = await this.modalController.create({
       component: LoginPage

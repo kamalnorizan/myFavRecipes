@@ -37,9 +37,9 @@ export class AuthService {
     );
   }
 
-  register(fname: string, lname: string, email: string, password: string) {
-    return this.http.post(this.env.API_URL + 'auth/register',
-      { fname, lname, email, password }
+  register(fName: string, lName: string, email: string, password: string) {
+    return this.http.post('http://recipes.test/api/auth/register',
+      { fName, lName, email, password }
     );
   }
 }// eof
