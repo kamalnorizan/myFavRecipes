@@ -1,6 +1,12 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button>Back</ion-back-button>
+    </ion-buttons>
     <ion-title>Register</ion-title>
+    <ion-button color="light" (click)="dismissRegister()" slot="end">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -31,7 +37,7 @@
     </ion-button>
   </form>
   <p class="ion-text-center">Already have an account?</p>
-<ion-button expand="full" color="primary" (click)="loginModal()">
-  Login
-</ion-button>
+  <ion-button expand="full" color="primary" (click)="loginModal()">
+    Login
+  </ion-button>
 </ion-content>

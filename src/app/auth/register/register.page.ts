@@ -11,9 +11,16 @@ export class RegisterPage implements OnInit {
 
   constructor(
     private modalController: ModalController
-  ) { }
+  ) {
+  }
+
 
   ngOnInit() {
+    console.log('Register : NgOnInit');
+  }
+
+  dismissRegister() {
+    this.modalController.dismiss();
   }
 
   register(form) {
@@ -21,6 +28,7 @@ export class RegisterPage implements OnInit {
   }
 
   async loginModal() {
+    this.dismissRegister();
     const loginModal = await this.modalController.create({
       component: LoginPage
     });
