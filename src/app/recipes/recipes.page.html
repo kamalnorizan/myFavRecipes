@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-button expand="full" (click)="logout()">
+    Logout
+  </ion-button>
   <ion-list>
     <ion-item *ngFor="let recipe of recipes" [routerLink]="['/recipe-detail',recipe.id]">
       <ion-avatar slot="start">

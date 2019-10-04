@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { EnvService } from './env.service';
 import { tap } from 'rxjs/operators';
@@ -60,4 +60,21 @@ export class AuthService {
       }
     );
   }
+
+  logout() {
+    const headers = new HttpHeaders({
+      'Authorization': this.token['token_type'] + ' ' + this.token['access_token']
+    });
+
+    return this.http.get(this.env.API_URL + 'auth/logout')
+    .pipe(
+      tap(data => {
+        this.storage.remove('token');
+        this.isLoggedIn = false;
+        delete this.token;
+        return data;
+      })
+    );
+  }
+
 }// eof
