@@ -12,7 +12,9 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
-  register(form){
+  register(form) {
   
   }
+
+  loginModal() {}
 }

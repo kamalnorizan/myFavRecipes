@@ -31,4 +31,6 @@ export class LandingPage implements OnInit {
     return await registerModal.present();
   }
 
+  
+
 }
