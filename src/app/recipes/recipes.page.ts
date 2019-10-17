@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { RecipesService } from '../services/recipes.service';
 import { AuthService } from '../services/auth.service';
-import { NavController } from '@ionic/angular';
+import { NavController, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-recipes',
@@ -14,10 +14,29 @@ export class RecipesPage implements OnInit {
   constructor(
     private recipesService: RecipesService,
     private authService: AuthService,
-    private navCtrl: NavController
-    ) { }
+    private navCtrl: NavController,
+    private menu: MenuController
+  ) {
+    this.menu.enable(true);
+   }
+
   ngOnInit() {
-    }
+  }
+
+  ionViewWillEnter() {
+    this.displayRecipe();
+  }
+
+  displayRecipe() {
+    this.authService.getAllRecipes().subscribe(
+      recipes => {
+        this.recipes = recipes;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 
   logout() {
     this.authService.logout().subscribe(
