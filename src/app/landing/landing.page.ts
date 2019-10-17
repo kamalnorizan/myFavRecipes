@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavController } from '@ionic/angular';
+import { ModalController, NavController, MenuController } from '@ionic/angular';
 import { LoginPage } from '../auth/login/login.page';
 import { RegisterPage } from '../auth/register/register.page';
 import { Router } from '@angular/router';
@@ -16,8 +16,10 @@ export class LandingPage implements OnInit {
     private modalController: ModalController,
     private router: Router,
     private authService: AuthService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private menu: MenuController
   ) {
+    this.menu.enable(false);
     console.log('Landing : Constructor');
   }
 
