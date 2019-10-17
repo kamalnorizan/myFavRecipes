@@ -8,7 +8,7 @@ export class AlertService {
 
   constructor(private toastCtrl: ToastController) { }
 
-  async presentToast(message: any){
+  async presentToast(message: any) {
     const toast = await this.toastCtrl.create({
       message: message,
       duration: 2000,

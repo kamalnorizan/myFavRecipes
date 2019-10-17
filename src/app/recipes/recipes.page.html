@@ -12,11 +12,13 @@
     Logout
   </ion-button>
   <ion-list>
-    <ion-item *ngFor="let recipe of recipes" [routerLink]="['/recipe-detail',recipe.id]">
+    <ion-item *ngFor="let recipe of recipes" [routerLink]="['/recipe-detail',recipe.id, recipe.title, recipe.imageUrl]">
       <ion-avatar slot="start">
         <img [src]="recipe.imageUrl" />
       </ion-avatar>
-      <ion-label> {{recipe.title}} </ion-label>
+      <ion-label> 
+        {{recipe.title}}
+      </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

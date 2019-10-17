@@ -18,11 +18,11 @@ export class AppComponent {
       url: '/recipes',
       icon: 'list'
     },
-    // {
-    //   title: 'Profile',
-    //   url: '/profil',
-    //   icon: 'user'
-    // },
+    {
+      title: 'Barcode Scanner',
+      url: '/qrscanner',
+      icon: 'barcode'
+    },
   ];
 
   constructor(

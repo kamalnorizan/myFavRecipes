@@ -11,6 +11,8 @@ import { Recipe } from '../recipes/recipe.model';
 export class AuthService {
   isLoggedIn = false;
   token: any;
+  private recipes: Recipe[];
+
   constructor(
     private http: HttpClient,
     private storage: NativeStorage,
@@ -86,9 +88,31 @@ export class AuthService {
     return this.http.get<Recipe[]>(this.env.API_URL + 'recipe', { headers: headers })
     .pipe(
       tap(recipes => {
+        this.recipes = recipes;
         return recipes;
       })
     );
+  }
+
+  getRecipe(recipeId: string) {
+    const headers = new HttpHeaders({
+      'Authorization': this.token["token_type"] + ' ' + this.token["access_token"]
+    });
+
+    return this.http.get<Recipe>(this.env.API_URL + 'recipe/' + recipeId, { headers: headers })
+    .pipe(
+      tap(
+        recipe => {
+          return recipe;
+        })
+    );
+
+
+    // return {
+    //   ... this.recipes.find(recipe => {
+    //     return recipe.id === recipeId;
+    //   })
+    // };
   }
 
 }// eof
