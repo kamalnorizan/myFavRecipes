@@ -115,8 +115,17 @@ export class AuthService {
     // };
   }
 
-  assignLog(){
-   
+  assignLog(url){
+    const headers = new HttpHeaders({
+      'Authorization': this.token["token_type"] + ' ' + this.token["access_token"]
+    });
+
+    return this.http.post(url, {headers: headers})
+    .pipe(
+      tap(data => {
+        return data;
+      })
+    );
   }
 
 }// eof
