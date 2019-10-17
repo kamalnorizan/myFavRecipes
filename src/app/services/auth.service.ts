@@ -115,4 +115,8 @@ export class AuthService {
     // };
   }
 
+  assignLog(){
+   
+  }
+
 }// eof
